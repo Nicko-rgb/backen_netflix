@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const nodemailer = require('nodemailer'); //para enviar email
 const crypto = require('crypto');
-const path = require('path');
 
 const app = express();
 const port = 5000;
@@ -31,13 +30,6 @@ db.connect((err) => {
     }
     console.log('Conexión a la base de datos MySQL establecida.');
 });
-
-// Servir los archivos estáticos de la carpeta build
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
 
 // Ruta para registrar un nuevo usuario
 app.post('/api/registro', (req, res) => {
